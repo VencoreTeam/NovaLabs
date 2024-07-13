@@ -1,4 +1,13 @@
-  window.addEventListener('scroll', function() {
+window.addEventListener('error', function(event) {
+    // Check if the error message contains a network-related error
+    if (event.message.includes('net::ERR_INTERNET_DISCONNECTED')) {
+        // Prevent the error from being logged to the console
+        event.preventDefault();
+        event.stopPropagation();
+    }
+}, true);
+
+window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     header.classList.toggle('sticky', window.scrollY > 0);
 });
